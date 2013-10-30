@@ -16,12 +16,12 @@
 
 package master.flame.danmaku.danmaku.renderer.android;
 
+import java.util.Iterator;
+
 import master.flame.danmaku.danmaku.model.BaseDanmaku;
 import master.flame.danmaku.danmaku.model.IDisplayer;
 import master.flame.danmaku.danmaku.model.android.Danmakus;
 import master.flame.danmaku.danmaku.util.DanmakuUtils;
-
-import java.util.Iterator;
 
 public class DanmakusRetainer {
 
@@ -90,6 +90,7 @@ public class DanmakusRetainer {
     private static class RLDanmakusRetainer implements IDanmakusRetainer {
 
         private static int LINE_SPACING = 6;
+
         protected Danmakus mVisibleDanmakus = new Danmakus(Danmakus.ST_BY_YPOS);
 
         @Override
@@ -159,7 +160,7 @@ public class DanmakusRetainer {
             }
 
             // layout
-            if(topPos>0){
+            if (topPos > 0) {
                 topPos += LINE_SPACING;
             }
             drawItem.layout(disp, drawItem.getLeft(), topPos);
@@ -170,6 +171,11 @@ public class DanmakusRetainer {
 
         }
 
+        @Override
+        public void clear() {
+            mVisibleDanmakus.clear();
+        }
+
         protected float checkVerticalEdge(boolean overwriteInsert, BaseDanmaku drawItem,
                 IDisplayer disp, float topPos, BaseDanmaku firstItem, BaseDanmaku lastItem) {
             if (topPos < 0 || topPos + drawItem.paintHeight + LINE_SPACING > disp.getHeight()) {
@@ -177,11 +183,6 @@ public class DanmakusRetainer {
                 mVisibleDanmakus.clear();
             }
             return topPos;
-        }
-
-        @Override
-        public void clear() {
-            mVisibleDanmakus.clear();
         }
 
     }
