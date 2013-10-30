@@ -100,6 +100,7 @@ public class DanmakusRetainer {
             float topPos = 0;
             boolean shown = drawItem.isShown();
             if (!shown) {
+                
                 // 确定弹幕位置
                 Iterator<BaseDanmaku> it = mVisibleDanmakus.iterator();
                 BaseDanmaku insertItem = null, firstItem = null, lastItem = null, minRightRow = null;
